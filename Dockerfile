@@ -11,6 +11,7 @@ RUN cd cl75/src && \
     sed -i s/-no-cpp-precomp// Makefile && \
     make configure && \
     make world
-RUN echo 'export PATH=/root/OchaCaml:$PATH' >> /root/.bashrc
 
-CMD ["bash"]
+ENV PATH /root/OchaCaml:$PATH
+
+CMD ["ochacaml"]
