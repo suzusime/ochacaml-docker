@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 WORKDIR /root
 RUN apt update && apt install -y wget patch gcc make
@@ -8,7 +8,7 @@ RUN tar xf cl75unix.tar.gz
 RUN tar xf OchaCaml140414-utf.tar.gz
 RUN patch -p0 < OchaCaml/OchaCaml.diff
 RUN cd cl75/src && \
-    sed -i s/-no-cpp-precomp// Makefile && \
+    sed -i 's/-D__FAVOR_BSD -no-cpp-precomp/-DHAS_STRERROR/' Makefile && \
     make configure && \
     make world
 
